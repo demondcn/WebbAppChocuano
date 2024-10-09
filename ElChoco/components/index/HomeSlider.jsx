@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 const HomeSlider = () => {
   return (
     <ImageBackground
-      source={require('../assets/bg_5.jpg')}
+      source={require('../../assets/bg_5.jpg')}
       style={styles.background}
     >
       <View style={styles.overlay}>

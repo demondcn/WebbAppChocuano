@@ -21,25 +21,25 @@ const Menu = () => {
           title="Cordero al Horno"
           price="22.000"
           description="Costillas de cordero al horno, pierna de cordero, o brazo de cordero tú decides."
-          image={require('../assets/menu-costillas.jpg')}
+          image={require('../../assets/menu-costillas.jpg')}
         />
         <MenuItem
           title="Cordero sudado"
           price="22.000"
           description="Pierna, espinazo o cola de cordero con un sabor indescriptible."
-          image={require('../assets/menu-cordero-sudado.jpg')}
+          image={require('../../assets/menu-cordero-sudado.jpg')}
         />
         <MenuItem
           title="Chanfaina de cordero"
           price="22.000"
           description="Para aquellos que les gusta las Producto tradicionales. Disfrutala"
-          image={require('../assets/menu-chanfaina.jpg')}
+          image={require('../../assets/menu-chanfaina.jpg')}
         />
         <MenuItem
           title="Costillas de cerdo al horno y sobrebarriga"
           price="28.000"
           description="Plato Mixto Famosas por su sabor crugiente, y su gran tamaño."
-          image={require('../assets/menu-mixto.jpg')}
+          image={require('../../assets/menu-mixto.jpg')}
         />
       </ScrollView>
       <TouchableOpacity style={styles.button}>

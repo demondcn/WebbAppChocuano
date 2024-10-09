@@ -1,19 +1,19 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import Header from './components/Header';
-import HomeSlider from './components/HomeSlider';
-import Services from './components/Services';
-import Menu from './components/Menu';
-import ReservationForm from './components/ReservationForm';
-import Footer from './components/Footer';
+import Navegador from './components/index/nave';
+import HomeSlider from './components/index/HomeSlider';
+import Services from './components/index/Services';
+import Menu from './components/index/Menu';
+import ReservationForm from './components/index/ReservationForm';
+import Footer from './components/index/Footer';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="light" />
       <ScrollView>
-        <Header />
+        <Navegador />
         <HomeSlider />
         <Services />
         <Menu />

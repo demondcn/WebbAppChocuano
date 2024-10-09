@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const Header = () => {
+const nave = () => {
   return (
     <View style={styles.header}>
       <Text style={styles.title}>EL Chocontano</Text>
@@ -28,4 +28,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export default nave;
