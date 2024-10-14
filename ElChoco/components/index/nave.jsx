@@ -1,31 +1,162 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+export default function nave() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeMenuItem, setActiveMenuItem] = useState('INICIO');
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+  const handleMenuPress = (item) => {
+    setActiveMenuItem(item); 
+    setMenuOpen(false); 
+  };
 
-const nave = () => {
   return (
-    <View style={styles.header}>
-      <Text style={styles.title}>EL Chocontano</Text>
-      <Text style={styles.subtitle}>Restaurante</Text>
-      <Text style={styles.subtitle}>Desde 1975</Text>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('../../assets/naveImage.jpg')}
+            style={styles.logoImage}
+            resizeMode="contain"
+          />
+        </View>
+        <TouchableOpacity onPress={toggleMenu} style={styles.menuButton}>
+          <Feather name="menu" size={30} color="#FFF" />
+          <Text style={styles.menuButtonText}>MENU</Text>
+        </TouchableOpacity>
+      </View>
+      {menuOpen && (
+        <View style={styles.menu}>
+          {/* Menu Items */}
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => handleMenuPress('INICIO')}
+          >
+            <Text
+              style={[
+                styles.menuItemText,
+                activeMenuItem === 'INICIO' && styles.activeMenuItemText, // Cambia el color si está activo
+              ]}
+            >
+              INICIO
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => handleMenuPress('MENÚ')}
+          >
+            <Text
+              style={[
+                styles.menuItemText,
+                activeMenuItem === 'MENÚ' && styles.activeMenuItemText,
+              ]}
+            >
+              MENÚ
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => handleMenuPress('SERVICIOS')}
+          >
+            <Text
+              style={[
+                styles.menuItemText,
+                activeMenuItem === 'SERVICIOS' && styles.activeMenuItemText,
+              ]}
+            >
+              SERVICIOS
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => handleMenuPress('HISTORIA')}
+          >
+            <Text
+              style={[
+                styles.menuItemText,
+                activeMenuItem === 'HISTORIA' && styles.activeMenuItemText,
+              ]}
+            >
+              HISTORIA
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.menuItem}
+            onPress={() => handleMenuPress('CONTACTANOS')}
+          >
+            <Text
+              style={[
+                styles.menuItemText,
+                activeMenuItem === 'CONTACTANOS' && styles.activeMenuItemText,
+              ]}
+            >
+              CONTACTANOS
+            </Text>
+          </TouchableOpacity>
+
+          {/* Cart Item */}
+          <TouchableOpacity style={styles.menuItem}>
+            <View style={styles.cartContainer}>
+              <Feather name="shopping-cart" size={24} color="#D4AF37" />
+              <Text style={styles.cartCount}>0</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  header: {
+  container: {
     backgroundColor: '#000',
-    padding: 20,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+  },
+  logoContainer: {
     alignItems: 'center',
   },
-  title: {
-    color: '#fff',
-    fontSize: 24,
-    fontWeight: 'bold',
+  logoImage: {
+    width: 200,
+    height: 50,
   },
-  subtitle: {
-    color: '#fff',
+  menuButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+  },
+  menuButtonText: {
+    color: '#FFF',
     fontSize: 16,
+    marginLeft: 8,
+  },
+  menu: {
+    padding: 10,
+  },
+  menuItem: {
+    paddingVertical: 10,
+  },
+  menuItemText: {
+    color: '#fff', // Color por defecto
+    fontSize: 18,
+  },
+  activeMenuItemText: {
+    color: '#C49B63', // Color del ítem activo
+  },
+  cartContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  cartCount: {
+    color: '#fff',
+    fontSize: 18,
+    marginLeft: 5,
   },
 });
-
-export default nave;

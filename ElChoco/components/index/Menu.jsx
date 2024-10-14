@@ -1,111 +1,162 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 
-const MenuItem = ({ title, price, description, image }) => (
+const MenuItem = ({ title, image }) => (
   <View style={styles.menuItem}>
     <Image source={image} style={styles.menuImage} />
-    <View style={styles.menuInfo}>
-      <Text style={styles.menuTitle}>{title}</Text>
-      <Text style={styles.menuDescription}>{description}</Text>
-      <Text style={styles.menuPrice}>${price}</Text>
-    </View>
+    <Text style={styles.menuTitle}>{title}</Text>
+  </View>
+);
+
+const StatItem = ({ icon, value, label }) => (
+  <View style={styles.statItem}>
+    <Feather name={icon} size={60} color="#000" />
+    <Text style={styles.statValue}>{value}</Text>
+    <Text style={styles.statLabel}>{label}</Text>
+  </View>
+);
+
+const StatItemMaterial = ({ icon, value, label }) => (
+  <View style={styles.statItem}>
+    <MaterialCommunityIcons name={icon} size={60} color="#000" />
+    <Text style={styles.statValue}>{value}</Text>
+    <Text style={styles.statLabel}>{label}</Text>
   </View>
 );
 
 const Menu = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Descubre Nuestro Menú</Text>
+      <View style={styles.header}>
+        <Text style={styles.title}>NUESTRO MENÚ</Text>
+        <Text style={styles.subtitle}>
+          Te ofrecemos deliciosa comida con los más exquisitos sabores que te dejarán
+          sin palabras. Nuestros platos están hechos para descubrirlos
+        </Text>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Escribenos</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, styles.outlineButton]}>
+            <Text style={[styles.buttonText, styles.outlineButtonText]}>Visitar menú</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      
+      {/* Carrusel de elementos del menú */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <MenuItem
+          title="Sopa de Cordero"
+          image={require('../../assets/menu-sopa.jpg')}
+        />
+        <MenuItem
           title="Cordero al Horno"
-          price="22.000"
-          description="Costillas de cordero al horno, pierna de cordero, o brazo de cordero tú decides."
-          image={require('../../assets/menu-costillas.jpg')}
+          image={require('../../assets/menu-cordero-asado.jpg')}
         />
         <MenuItem
-          title="Cordero sudado"
-          price="22.000"
-          description="Pierna, espinazo o cola de cordero con un sabor indescriptible."
-          image={require('../../assets/menu-cordero-sudado.jpg')}
-        />
-        <MenuItem
-          title="Chanfaina de cordero"
-          price="22.000"
-          description="Para aquellos que les gusta las Producto tradicionales. Disfrutala"
-          image={require('../../assets/menu-chanfaina.jpg')}
-        />
-        <MenuItem
-          title="Costillas de cerdo al horno y sobrebarriga"
-          price="28.000"
-          description="Plato Mixto Famosas por su sabor crugiente, y su gran tamaño."
+          title="Plato Mixto"
           image={require('../../assets/menu-mixto.jpg')}
         />
+        <MenuItem
+          title="Rellena"
+          image={require('../../assets/menu-rellena.jpg')}
+        />
       </ScrollView>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Visitar Menú Completo</Text>
-      </TouchableOpacity>
+
+      {/* Estadísticas */}
+      <View style={styles.statsContainer}>
+        <StatItemMaterial icon="food-turkey" value="13" label="Cantidad de platos" />
+        <StatItem icon="award" value="7" label="Número de premios" />
+        <StatItem icon="users" value="10.567" label="Clientes felices" />
+        <StatItemMaterial icon="chef-hat" value="27" label="Personal" />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: '#000',
+  },
+  header: {
     padding: 20,
-    backgroundColor: '#f8f9fa',
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
-    color: '#333',
-  },
-  menuItem: {
-    width: 250,
-    marginRight: 20,
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  menuImage: {
-    width: '100%',
-    height: 150,
-  },
-  menuInfo: {
-    padding: 15,
-  },
-  menuTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 5,
-    color: '#333',
-  },
-  menuPrice: {
-    fontSize: 16,
-    color: '#c8a97e',
-    fontWeight: 'bold',
-  },
-  menuDescription: {
-    fontSize: 14,
-    color: '#666',
+    color: '#C49B63',
     marginBottom: 10,
   },
+  subtitle: {
+    fontSize: 16,
+    color: '#fff',
+    marginBottom: 20,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   button: {
-    backgroundColor: '#c8a97e',
-    padding: 15,
+    backgroundColor: '#C49B63',
+    padding: 10,
     borderRadius: 5,
+    flex: 1,
+    marginRight: 10,
     alignItems: 'center',
-    marginTop: 20,
   },
   buttonText: {
-    color: '#fff',
+    color: '#000',
     fontWeight: 'bold',
+  },
+  outlineButton: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: '#C49B63',
+  },
+  outlineButtonText: {
+    color: '#C49B63',
+  },
+  menuItem: {
+    marginRight: 10, // Espaciado entre los elementos del carrusel
+    alignItems: 'center',
+  },
+  menuImage: {
+    width: 150, // Ajusta el ancho según tus necesidades
+    height: 150, // Ajusta la altura según tus necesidades
+    borderRadius: 10, // Esquinas redondeadas
+    resizeMode: 'cover',
+  },
+  menuTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#fff',
+    textAlign: 'center',
+    marginTop: 5,
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    backgroundColor: '#C49B63',
+    padding: 20,
+  },
+  statItem: {
+    alignItems: 'center',
+    width: '48%',
+    marginBottom: 20,
+  },
+  statValue: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#000',
+    marginTop: 5,
+  },
+  statLabel: {
+    fontSize: 14,
+    color: '#000',
+    textAlign: 'center',
   },
 });
 
