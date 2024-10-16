@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-export default function nave() {
+
+export default function nave(navigation) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeMenuItem, setActiveMenuItem] = useState('INICIO');
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
   const handleMenuPress = (item) => {
-    setActiveMenuItem(item); 
-    setMenuOpen(false); 
+    setActiveMenuItem(item);
+    setMenuOpen(false);
+    if (item === 'MENÚ') {
+      navigation.navigate('Menu');
+    }
   };
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -30,68 +33,29 @@ export default function nave() {
       {menuOpen && (
         <View style={styles.menu}>
           {/* Menu Items */}
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => handleMenuPress('INICIO')}
-          >
-            <Text
-              style={[
-                styles.menuItemText,
-                activeMenuItem === 'INICIO' && styles.activeMenuItemText, // Cambia el color si está activo
-              ]}
-            >
+          <TouchableOpacity style={styles.menuItem} onPress={() => handleMenuPress('INICIO')}>
+            <Text style={[styles.menuItemText, activeMenuItem === 'INICIO' && styles.activeMenuItemText]}>
               INICIO
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => handleMenuPress('MENÚ')}
-          >
-            <Text
-              style={[
-                styles.menuItemText,
-                activeMenuItem === 'MENÚ' && styles.activeMenuItemText,
-              ]}
-            >
+          <TouchableOpacity style={styles.menuItem} onPress={() => handleMenuPress('MENÚ')}>
+            <Text style={[styles.menuItemText, activeMenuItem === 'MENÚ' && styles.activeMenuItemText]}>
               MENÚ
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => handleMenuPress('SERVICIOS')}
-          >
-            <Text
-              style={[
-                styles.menuItemText,
-                activeMenuItem === 'SERVICIOS' && styles.activeMenuItemText,
-              ]}
-            >
+          {/* Agrega más elementos de menú aquí */}
+          <TouchableOpacity style={styles.menuItem} onPress={() => handleMenuPress('SERVICIOS')}>
+            <Text style={[styles.menuItemText, activeMenuItem === 'SERVICIOS' && styles.activeMenuItemText]}>
               SERVICIOS
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => handleMenuPress('HISTORIA')}
-          >
-            <Text
-              style={[
-                styles.menuItemText,
-                activeMenuItem === 'HISTORIA' && styles.activeMenuItemText,
-              ]}
-            >
+          <TouchableOpacity style={styles.menuItem} onPress={() => handleMenuPress('HISTORIA')}>
+            <Text style={[styles.menuItemText, activeMenuItem === 'HISTORIA' && styles.activeMenuItemText]}>
               HISTORIA
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.menuItem}
-            onPress={() => handleMenuPress('CONTACTANOS')}
-          >
-            <Text
-              style={[
-                styles.menuItemText,
-                activeMenuItem === 'CONTACTANOS' && styles.activeMenuItemText,
-              ]}
-            >
+          <TouchableOpacity style={styles.menuItem} onPress={() => handleMenuPress('CONTACTANOS')}>
+            <Text style={[styles.menuItemText, activeMenuItem === 'CONTACTANOS' && styles.activeMenuItemText]}>
               CONTACTANOS
             </Text>
           </TouchableOpacity>
@@ -107,6 +71,7 @@ export default function nave() {
       )}
     </View>
   );
+
 }
 
 const styles = StyleSheet.create({

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import * as Font from 'expo-font'; // Importanos la fuente Great Vibes
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const MenuItem = ({ title, image }) => (
@@ -25,10 +26,13 @@ const StatItemMaterial = ({ icon, value, label }) => (
   </View>
 );
 
-const Menu = () => {
+export default function Menu() {
+  const [isFontLoaded, setIsFontLoaded] = useState(false);
   return (
+
     <View style={styles.container}>
       <View style={styles.header}>
+        <Text style={styles.bienvenidos}>Bienvenidos</Text>
         <Text style={styles.title}>NUESTRO MENÚ</Text>
         <Text style={styles.subtitle}>
           Te ofrecemos deliciosa comida con los más exquisitos sabores que te dejarán
@@ -43,24 +47,17 @@ const Menu = () => {
           </TouchableOpacity>
         </View>
       </View>
-      
+
       {/* Carrusel de elementos del menú */}
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <ScrollView style={styles.container}>
         <MenuItem
-          title="Sopa de Cordero"
-          image={require('../../assets/menu-sopa.jpg')}
-        />
-        <MenuItem
-          title="Cordero al Horno"
           image={require('../../assets/menu-cordero-asado.jpg')}
         />
         <MenuItem
-          title="Plato Mixto"
           image={require('../../assets/menu-mixto.jpg')}
         />
         <MenuItem
-          title="Rellena"
-          image={require('../../assets/menu-rellena.jpg')}
+          image={require('../../assets/menu-churrasco2.jpg')}
         />
       </ScrollView>
 
@@ -82,6 +79,9 @@ const styles = StyleSheet.create({
   },
   header: {
     padding: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: 28,
@@ -123,10 +123,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   menuImage: {
-    width: 150, // Ajusta el ancho según tus necesidades
-    height: 150, // Ajusta la altura según tus necesidades
-    borderRadius: 10, // Esquinas redondeadas
+    width: '100%',
+    height: 200,
     resizeMode: 'cover',
+    marginBottom: 8,
   },
   menuTitle: {
     fontSize: 16,
@@ -158,6 +158,13 @@ const styles = StyleSheet.create({
     color: '#000',
     textAlign: 'center',
   },
+  bienvenidos: {
+    color: 'white',
+    fontSize: 24,
+    fontStyle: 'static',
+    fontFamily: 'GreatVibes-Regular',
+    marginBottom: 10,
+  },
 });
 
-export default Menu;
+

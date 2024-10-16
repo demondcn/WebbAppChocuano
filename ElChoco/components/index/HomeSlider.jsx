@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, ScrollView, Linking, Animated } from 'react-native';
-import * as Font from 'expo-font'; // Importa expo-font
+import * as Font from 'expo-font'; // Importanos la fuente Great Vibes
 import * as SplashScreen from 'expo-splash-screen'; // Importa expo-splash-screen
 import { Feather, FontAwesome } from '@expo/vector-icons';
 
@@ -17,9 +17,9 @@ const titles = [
 ];
 
 const descriptions = [
-  "Te invitamos a que disfrutes en familia, y/o junto con esa persona que mas amas, a compartir de una gran variedad de platos gigantes.",
-  "Gran variedad de platos gigantes, medianos y chicos para toda la familia con mucho amor.",
-  " Atendidos por sus propietarios dispuestos a complacer todos sus antojos somos prioneros y lideres en nuestro sección de platos derivados del cordero.",
+  "Te invitamos a disfrutar en familia o junto a esa persona que más amas, compartiendo una gran variedad de platos gigantes.",
+  "Contamos con una gran variedad de platos gigantes, medianos y pequeños para toda la familia, todos preparados con mucho amor.",
+  "Atendidos por sus propietarios, estamos dispuestos a complacer todos sus antojos. Somos pioneros y líderes en nuestra sección de platos derivados del cordero.",
 ];
 export default function WelcomeCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);

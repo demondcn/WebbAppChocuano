@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ScrollView, SafeAreaView, Button } from 'react-native';
+import { StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native'; 
 import { createStackNavigator } from '@react-navigation/stack'; 
@@ -19,20 +19,28 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Menu" component={Menu} />
+        {/* Otras pantallas pueden ir aquí */}
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+function HomeScreen({ navigation }) {
+  return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
       <ScrollView>
-        <Navegador />
+        <Navegador navigation={navigation} /> {/* Pasa el prop navigation */}
         <HomeSlider />
         <Services />
-        <Menu />
         <MejoresClientes />
-        <Testimonials/>
-        <LocationContact/>
-        {/* <Button
-          title="Ir a Ejemplo 1"
-          onPress={() => navigation.navigate('Ejemplo1')} 
-        /> */}
+        <Testimonials />
+        <LocationContact />
+        {/* <Button title="Ir a Ejemplo 1" onPress={() => navigation.navigate('Ejemplo1')} /> */}
       </ScrollView>
     </SafeAreaView>
   );
