@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
-import * as Font from 'expo-font'; // Importanos la fuente Great Vibes
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
-
+import * as Font from 'expo-font';
 const MenuItem = ({ title, image }) => (
   <View style={styles.menuItem}>
     <Image source={image} style={styles.menuImage} />

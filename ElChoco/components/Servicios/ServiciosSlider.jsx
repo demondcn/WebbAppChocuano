@@ -5,20 +5,20 @@ import * as SplashScreen from 'expo-splash-screen'; // Importa expo-splash-scree
 import { Feather, FontAwesome } from '@expo/vector-icons';
 const { width } = Dimensions.get('window');
 const images = [
-  { uri: require('../../assets/bg_5.jpg') },
-  { uri: require('../../assets/bg_6.jpg') },
-  { uri: require('../../assets/bg_7.jpg') },
+  { uri: require('../../assets/blog-karaoque.jpg') },
+  { uri: require('../../assets/blog-50años2.jpg') },
+  { uri: require('../../assets/blog-fiesta.jpg') },
 ];
 const titles = [
-  "UN LUGAR DE TRADICIÓN Y MUCHO SABOR",
-  "ASOMBROSOS PLATOS & GRAN AMBIENTE FAMILIAR",
-  "Quedate en casa \n nosotros te lo llevamos",
+  "Otros Servicios",
+  "Alquiler del salón para todo tipo de eventos",
+  "Fiestas y Celebraciones y más",
 ];
 
 const descriptions = [
-  "Te invitamos a disfrutar en familia o junto a esa persona que más amas, compartiendo una gran variedad de platos gigantes.",
-  "Contamos con una gran variedad de platos gigantes, medianos y pequeños para toda la familia, todos preparados con mucho amor.",
-  "Atendidos por sus propietarios, estamos dispuestos a complacer todos sus antojos. Somos pioneros y líderes en nuestra sección de platos derivados del cordero.",
+  "Además de nuestra oferta gastronómica, brindamos servicios adicionales como catering, atención personalizada y organización de eventos especiales.",
+  "Nuestro salón está disponible para alquiler, adaptado a todo tipo de eventos, desde reuniones corporativas hasta celebraciones familiares, con capacidad y equipamiento para cualquier ocasión.",
+  "Ofrecemos soluciones completas para fiestas, celebraciones y cualquier tipo de evento, incluyendo decoración, música y menús personalizados para que cada detalle sea perfecto.",
 ];
 export default function WelcomeCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -109,14 +109,6 @@ export default function WelcomeCarousel() {
                 <Text style={styles.welcomeText}>Bienvenidos</Text>
                 <Text style={styles.titleText}>{titles[activeIndex]}</Text>
                 <Text style={styles.descriptionText}>{descriptions[activeIndex]}</Text>
-                <View style={styles.buttonContainer}>
-                  <TouchableOpacity style={styles.menuButton}>
-                    <Text style={styles.menuButtonText}>Visitar menú</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.contactButton}>
-                    <Text style={styles.contactButtonText}>Escribenos</Text>
-                  </TouchableOpacity>
-                </View>
               </View>
             </View>
           ))}
@@ -200,36 +192,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     marginBottom: 20,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-  },
-  menuButton: {
-    backgroundColor: '#C49B63',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    marginHorizontal: 30,
-    borderWidth: 1,
-    borderColor: 'white',
-  },
-  menuButtonText: {
-    color: 'black',
-    fontWeight: 'bold',
-  },
-  contactButton: {
-    backgroundColor: 'transparent',
-    padding: 10,
-    borderRadius: 5,
-    borderWidth: 1,
-    marginHorizontal: 20,
-    borderColor: 'white',
-  },
-  contactButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
   },
   pagination: {
     flexDirection: 'row',

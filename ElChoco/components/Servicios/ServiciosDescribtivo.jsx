@@ -45,40 +45,67 @@ export default function Testimonials() {
 
     return (
         <View style={styles.container}>
+            <View style={styles.headerContainer}>
+                <Text style={styles.headerLarge}>ALQUILER DEL SALÓN PARA TODO TIPO DE EVENTOS</Text>
+            </View>
+            <Text style={styles.subheader}>
+                Te ayudamos a organizar toda clase de reuniones especiales. Con la comida que prefieras.
+            </Text>
             <Image
-                source={require('../../assets/about-1.jpg')}
+                source={require('../../assets/blog-fiestas-familiares.jpg')}
                 style={styles.collage}
             />
             <Image
-                source={require('../../assets/about-2.jpg')}
+                source={require('../../assets/blog-karaoque.jpg')}
                 style={styles.collage}
             />
             <Image
-                source={require('../../assets/about-4.jpg')}
+                source={require('../../assets/blog-50años2.jpg')}
                 style={styles.collage}
             />
             <Image
-                source={require('../../assets/about-3.jpg')}
+                source={require('../../assets/blog-boda.jpg')}
                 style={styles.collage}
             />
             <View style={styles.headerContainer}>
-                <Text style={styles.headerSmall}>Testimonios</Text>
-                <Text style={styles.headerLarge}>COMENTARIOS CLIENTES</Text>
+                <Text style={styles.headerLarge}>DE LUNES A VIERNES</Text>
+                <Text style={styles.headerLarge}>ALMUERZO</Text>
+                <Text style={styles.headerLarge}>CORRIENTE</Text>
             </View>
             <Text style={styles.subheader}>
-                Déjanos tu comentario, donde prefieras en Google, en nuestras redes sociales o por AQUÍ en nuestra web. Nos encanta tener en cuenta tus opiniones, muchas gracias.
+                Solo entre semana te ofrecemos gran variedad de ingredientes, cada día hay nuevos ingredientes.
             </Text>
-            <ScrollView style={styles.testimonialsList}>
-                {testimonials.map((testimonial, index) => (
-                    <Testimonial
-                        key={index}
-                        name={testimonial.name}
-                        comment={testimonial.comment}
-                        avatar={testimonial.avatar}
-                        backgroundColor={colors[index % colors.length]} // Alterna los colores
-                    />
-                ))}
-            </ScrollView>
+            <Image
+                source={require('../../assets/service.jpg')}
+                style={styles.collage}
+            />
+            <Image
+                source={require('../../assets/service2.jpg')}
+                style={styles.collage}
+            />
+            <View style={styles.headerContainer}>
+                <Text style={styles.headerLarge}>EN LA TARDES</Text>
+                <Text style={styles.headerLarge}>AREPAS CLASUDAS</Text>
+            </View>
+            <Text style={styles.subheader}>
+                Después de las 4:00pm ven y disfruta de arepas rellenas de lo que desees. Con todos los ingredientes sabe mejor. Y con una Coca-Cola bien fría, mejor dicho ni se diga.
+            </Text>
+            <Image
+                source={require('../../assets/menu-arepas-rellenas4.jpg')}
+                style={styles.collage}
+            />
+            <Image
+                source={require('../../assets/menu-arepas-rellenas3.jpg')}
+                style={styles.collage}
+            />
+            <Image
+                source={require('../../assets/menu-arepas-rellenas.jpg')}
+                style={styles.collage}
+            />
+            <Image
+                source={require('../../assets/menu-arepas-rellenas2.jpg')}
+                style={styles.collage}
+            />
         </View>
     );
 }

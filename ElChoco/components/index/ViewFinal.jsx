@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, Linking, TouchableOpacity } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
 import { Feather, FontAwesome } from '@expo/vector-icons';
 
 export default function LocationContact() {
@@ -19,30 +18,12 @@ export default function LocationContact() {
   const handleLocation = () => {
     Linking.openURL('https://maps.app.goo.gl/AVEHzZutnQ2TvgLJ9');
   };
+  const handleEmail = () => {
+    Linking.openURL('mailto:elchocontano@gmail.com');
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Descubre</Text>
-      <Text style={styles.subtitle}>NUESTRA UBICACIÓN</Text>
-
-      <View style={styles.mapContainer}>
-        <MapView
-          style={styles.map}
-          initialRegion={{
-            latitude: 4.514986879326891,
-            longitude: -74.11649498248194,
-            latitudeDelta: 0.005,
-            longitudeDelta: 0.005,
-          }}
-        >
-          <Marker
-            coordinate={{ latitude: 4.514986879326891, longitude: -74.11649498248194 }}
-            title="El Chocontano"
-            description="Piqueteadero y Restaurante"
-          />
-        </MapView>
-      </View>
-
       <View style={styles.socialContainer}>
         <TouchableOpacity onPress={() => handleSocialMediaPress('https://www.instagram.com/elchocontano/')}>
           <Feather name="instagram" size={60} color="#C49B63" />
@@ -54,7 +35,6 @@ export default function LocationContact() {
           <FontAwesome name="whatsapp" size={60} color="#C49B63" />
         </TouchableOpacity>
       </View>
-
       <View style={styles.contactInfoContainer}>
         <TouchableOpacity style={styles.contactItem} onPress={handleWhatsApp}>
           <FontAwesome name="whatsapp" size={24} color="#C49B63" />
@@ -77,8 +57,13 @@ export default function LocationContact() {
             <Text style={styles.contactDescription}>Frente al banco caja social de santa librada.</Text>
           </View>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.contactItem} onPress={handleEmail}>
+          <Feather name="mail" size={24} color="#C49B63" />
+          <View style={styles.contactTextContainer}>
+            <Text style={styles.contactNumber}>elchocontano@gmail.com</Text>
+          </View>
+        </TouchableOpacity>
       </View>
-
       <Text style={styles.copyright}>
         Copyright ©2024 Todos los derechos reservados, esta plantilla fue desarrollada por @GrupoAlfaCreativos.
       </Text>

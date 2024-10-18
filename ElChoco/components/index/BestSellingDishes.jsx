@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
-
+import * as Font from 'expo-font';
 const MenuItem = ({ name, description, price, image }) => (
     <View style={styles.menuItem}>
         <Image source={image} style={styles.dishImage} />
@@ -11,6 +11,7 @@ const MenuItem = ({ name, description, price, image }) => (
 );
 
 export default function BestSellingDishes() {
+    const [isFontLoaded, setIsFontLoaded] = useState(false);
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.title}>Descubre</Text>
@@ -48,9 +49,10 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
-        fontWeight: 'bold',
         color: '#D4AF37',
         textAlign: 'center',
+        fontStyle: 'static',
+        fontFamily: 'GreatVibes-Regular',
     },
     subtitle: {
         fontSize: 28,

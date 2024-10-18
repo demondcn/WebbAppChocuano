@@ -4,7 +4,7 @@ import { Feather } from '@expo/vector-icons';
 
 export default function Nave({ navigation }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeMenuItem, setActiveMenuItem] = useState('INICIO');
+  const [activeMenuItem, setActiveMenuItem] = useState('MENÚ');
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -13,19 +13,7 @@ export default function Nave({ navigation }) {
   const handleMenuPress = (item) => {
     setActiveMenuItem(item);
     setMenuOpen(false);
-    if (item === 'INICIO') {
-      navigation.navigate('Home');
-    }
     if (item === 'MENÚ') {
-      navigation.navigate('Menu');
-    }
-    if (item === 'SERVICIOS') {
-      navigation.navigate('Servicios');
-    }
-    if (item === 'HISTORIA') {
-      navigation.navigate('Historia');
-    }
-    if (item === 'CONTACTANOS') {
       navigation.navigate('Menu');
     }
   };
