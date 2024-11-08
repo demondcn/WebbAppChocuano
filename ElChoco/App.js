@@ -3,6 +3,7 @@ import { StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationProvider } from './App/NavigationContext'; // Asegúrate de la ruta correcta
 import Navegador from './components/index/nave';
 import HomeSlider from './components/index/HomeSlider';
 import Services from './components/index/Services';
@@ -14,34 +15,48 @@ import ViewFinal from './components/index/ViewFinal';
 import Menú from './App/Menú';
 import Servicios from './App/Servicios';
 import Historia from './App/Historía';
+import Contactos from './App/Contactanos'
+import CarroShop from './App/CarroShop'
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ headerShown: true }}
-        />
-        <Stack.Screen
-          name="Menu"
-          component={Menú}
-          options={{ headerShown: true }}
-        />
-        <Stack.Screen
-          name="Servicios"
-          component={Servicios}
-          options={{ headerShown: true }}
-        />
-        <Stack.Screen
-          name="Historia"
-          component={Historia}
-          options={{ headerShown: true }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <NavigationProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Menu"
+            component={Menú}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Servicios"
+            component={Servicios}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Historia"
+            component={Historia}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Contactos"
+            component={Contactos}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Carrito"
+            component={CarroShop}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </NavigationProvider>
   );
 }
 
@@ -58,7 +73,6 @@ function HomeScreen({ navigation }) {
         <Testimonials />
         <Ubicacion />
         <ViewFinal />
-        {/* <Button title="Ir a Ejemplo 1" onPress={() => navigation.navigate('Ejemplo1')} /> */}
       </ScrollView>
     </SafeAreaView>
   );

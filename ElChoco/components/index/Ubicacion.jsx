@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet} from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Font from 'expo-font';
 
 export default function LocationContact() {
   const [isFontLoaded, setIsFontLoaded] = useState(false);
+  useEffect(() => {
+    const loadFonts = async () => {
+      await Font.loadAsync({
+        'GreatVibes-Regular': require('../../assets/fonts/GreatVibes-Regular.ttf'), // Asegúrate de ajustar la ruta a donde esté tu archivo de fuente
+      });
+      setIsFontLoaded(true);
+    };
+
+    loadFonts();
+  }, []);
+
+  if (!isFontLoaded) {
+    return null; // O un componente de carga si prefieres
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Descubre</Text>

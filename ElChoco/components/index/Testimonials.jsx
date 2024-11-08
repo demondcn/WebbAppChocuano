@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import * as Font from 'expo-font';
 const Testimonial = ({ name, comment, avatar, backgroundColor }) => (
@@ -13,6 +13,20 @@ const Testimonial = ({ name, comment, avatar, backgroundColor }) => (
 
 export default function Testimonials() {
     const [isFontLoaded, setIsFontLoaded] = useState(false);
+    useEffect(() => {
+        const loadFonts = async () => {
+          await Font.loadAsync({
+            'GreatVibes-Regular': require('../../assets/fonts/GreatVibes-Regular.ttf'), // Asegúrate de ajustar la ruta a donde esté tu archivo de fuente
+          });
+          setIsFontLoaded(true);
+        };
+    
+        loadFonts();
+      }, []);
+    
+      if (!isFontLoaded) {
+        return null; // O un componente de carga si prefieres
+      }
     const testimonials = [
         {
             name: "FABIO LEONARDO CIFUENTES VILLALOBOS",

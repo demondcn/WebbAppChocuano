@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import * as Font from 'expo-font';
 const MenuItem = ({ name, description, price, image }) => (
     <View style={styles.menuItem}>
         <Image source={image} style={styles.dishImage} />
@@ -14,6 +15,21 @@ const MenuItem = ({ name, description, price, image }) => (
     </View>
 );
 export default function Menu() {
+    const [isFontLoaded, setIsFontLoaded] = useState(false);
+    useEffect(() => {
+        const loadFonts = async () => {
+          await Font.loadAsync({
+            'GreatVibes-Regular': require('../../assets/fonts/GreatVibes-Regular.ttf'), // Asegúrate de ajustar la ruta a donde esté tu archivo de fuente
+          });
+          setIsFontLoaded(true);
+        };
+    
+        loadFonts();
+      }, []);
+    
+      if (!isFontLoaded) {
+        return null; // O un componente de carga si prefieres
+      }
     return (
         <View style={styles.container}>
             <View style={styles.header}>

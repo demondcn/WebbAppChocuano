@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import * as Font from 'expo-font';
 const MenuItem = ({ name, description, price, image }) => (
@@ -12,6 +12,20 @@ const MenuItem = ({ name, description, price, image }) => (
 
 export default function BestSellingDishes() {
     const [isFontLoaded, setIsFontLoaded] = useState(false);
+    useEffect(() => {
+        const loadFonts = async () => {
+          await Font.loadAsync({
+            'GreatVibes-Regular': require('../../assets/fonts/GreatVibes-Regular.ttf'), // Asegúrate de ajustar la ruta a donde esté tu archivo de fuente
+          });
+          setIsFontLoaded(true);
+        };
+    
+        loadFonts();
+      }, []);
+    
+      if (!isFontLoaded) {
+        return null; // O un componente de carga si prefieres
+      }
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.title}>Descubre</Text>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
@@ -27,6 +27,20 @@ const StatItemMaterial = ({ icon, value, label }) => (
 
 export default function Menu() {
   const [isFontLoaded, setIsFontLoaded] = useState(false);
+  useEffect(() => {
+    const loadFonts = async () => {
+      await Font.loadAsync({
+        'GreatVibes-Regular': require('../../assets/fonts/GreatVibes-Regular.ttf'), // Asegúrate de ajustar la ruta a donde esté tu archivo de fuente
+      });
+      setIsFontLoaded(true);
+    };
+
+    loadFonts();
+  }, []);
+
+  if (!isFontLoaded) {
+    return null; // O un componente de carga si prefieres
+  }
   return (
 
     <View style={styles.container}>
