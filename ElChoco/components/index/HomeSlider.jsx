@@ -4,6 +4,7 @@ import * as Font from 'expo-font'; // Importanos la fuente Great Vibes
 import * as SplashScreen from 'expo-splash-screen'; // Importa expo-splash-screen
 import { Feather, FontAwesome } from '@expo/vector-icons';
 const { width } = Dimensions.get('window');
+import { useAuth } from '../../App/AuthenticationContext'; // Asegúrate de la ruta correcta
 const images = [
   { uri: require('../../assets/bg_5.jpg') },
   { uri: require('../../assets/bg_6.jpg') },
@@ -25,6 +26,7 @@ export default function WelcomeCarousel() {
   const [isFontLoaded, setIsFontLoaded] = useState(false); // Estado para la carga de fuente
   const scrollViewRef = useRef(null);
   const opacity = useRef(new Animated.Value(1)).current;
+  const { isLogged } = useAuth();
   useEffect(() => {
     // Función para cargar fuentes
     const loadFonts = async () => {
@@ -83,7 +85,10 @@ export default function WelcomeCarousel() {
   const handleLocation = () => {
     Linking.openURL('https://maps.app.goo.gl/AVEHzZutnQ2TvgLJ9');
   };
-
+  const handleVisitMenu = () => {
+    console.log('Estado de isLogged:', isLogged);
+    // Aquí puedes realizar otras acciones basadas en el estado de isLogged
+  };
   if (!isFontLoaded) {
     return null; // No muestres nada hasta que las fuentes estén cargadas
   }
@@ -110,7 +115,7 @@ export default function WelcomeCarousel() {
                 <Text style={styles.titleText}>{titles[activeIndex]}</Text>
                 <Text style={styles.descriptionText}>{descriptions[activeIndex]}</Text>
                 <View style={styles.buttonContainer}>
-                  <TouchableOpacity style={styles.menuButton}>
+                  <TouchableOpacity style={styles.menuButton} onPress={handleVisitMenu}>
                     <Text style={styles.menuButtonText}>Visitar menú</Text>
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.contactButton}>

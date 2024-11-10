@@ -27,6 +27,7 @@ export default function Nave({ navigation }) {
       if (item === 'SERVICIOS') navigation.navigate('Servicios');
       if (item === 'HISTORIA') navigation.navigate('Historia');
       if (item === 'CONTACTANOS') navigation.navigate('Contactos');
+      if (item === 'LOGIN') navigation.navigate('LoginRegister');
     }
   };
 
@@ -117,7 +118,7 @@ export default function Nave({ navigation }) {
 
       {menuOpen && (
         <View style={styles.menu}>
-          {['INICIO', 'MENÚ', 'SERVICIOS', 'HISTORIA', 'CONTACTANOS'].map((item) => (
+          {['INICIO', 'MENÚ', 'SERVICIOS', 'HISTORIA', 'CONTACTANOS', 'LOGIN'].map((item) => (
             <TouchableOpacity
               key={item}
               style={styles.menuItem}
