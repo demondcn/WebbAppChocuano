@@ -3,7 +3,7 @@ import { StyleSheet, ScrollView, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Navegador from '../components/index/nave';
 import Slider from '../components/menu/MenúSlider';
-import MenuCompra from '../components/menu/menúCompra'
+import MenuCompra from '../components/menu/menuCompra'
 import ViewFinal from '../components/index/ViewFinal';
 export default function MenuScreen({ navigation }) {
   return (

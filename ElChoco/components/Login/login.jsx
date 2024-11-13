@@ -14,7 +14,8 @@ import {
 } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase-config';  // Importa 'auth' desde firebase-config
+import { auth, db } from '../../firebase-config';  // Importa 'auth' desde firebase-config
+import { doc, setDoc } from 'firebase/firestore';
 import { useAuth } from '../../App/AuthenticationContext'; 
 const { width, height } = Dimensions.get('window');
 
@@ -30,18 +31,27 @@ export default function RestaurantLogin({ navigation }) {
       if (isLogin) {
         // Iniciar sesión
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        login();  // Llama a la función login del contexto
+        login();
         console.log('Login successful', userCredential);
         navigation.navigate('Home');
       } else {
         // Registro
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        login();  // Llama a la función login del contexto
+        const user = userCredential.user;
+  
+        // Agregar el usuario a Firestore
+        await setDoc(doc(db, "users", user.uid), {
+          name: name,
+          email: email,
+          cartItems: []  // Carrito inicial vacío
+        });
+  
+        login();
         console.log('Registration successful', userCredential);
         navigation.navigate('Home');
       }
     } catch (error) {
-      setError(error.message); // Manejo de errores de Firebase
+      setError(error.message);
     }
   };
 

@@ -3,6 +3,7 @@
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAl9KKKS-iSlC34nYEDG4xbsgbW5tE_Xic",
@@ -12,9 +13,12 @@ const firebaseConfig = {
   messagingSenderId: "680395330809",
   appId: "1:680395330809:web:cd0e73714b2a08880c3e28"
 };
-
 // Inicializar Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 
-export { auth };
+// Inicializar Auth y Firestore
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Exportar Auth y Firestore
+export { auth, db };

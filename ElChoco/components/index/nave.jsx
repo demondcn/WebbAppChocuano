@@ -1,20 +1,40 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Modal, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { NavigationContext } from '../../App/NavigationContext';
-
+import { doc, getDoc } from 'firebase/firestore';
+import { db, auth } from '../../firebase-config';
 export default function Nave({ navigation }) {
   const { activeMenuItem, setActiveMenuItem } = useContext(NavigationContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartModalVisible, setCartModalVisible] = useState(false);
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Sopa De Mute', price: 34000, quantity: 1 },
-    { id: 2, name: 'Cordero Al Horno', price: 45000, quantity: 2 },
-  ]);
-
+  const [cartItems, setCartItems] = useState([]);
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  // Función para obtener el carrito de Firestore
+  const fetchCartItems = async (userId) => {
+    try {
+      const docRef = doc(db, "users", userId);
+      const docSnap = await getDoc(docRef);
 
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        setCartItems(userData.cartItems || []); // Asegúrate de que el carrito esté inicializado
+        console.log("Carrito del usuario:", userData.cartItems);
+      } else {
+        console.log("No se encontró el documento del usuario.");
+      }
+    } catch (error) {
+      console.error("Error al obtener el carrito:", error);
+    }
+  };
+    // Obtener el carrito al inicio
+    useEffect(() => {
+      const user = auth.currentUser;
+      if (user) {
+        fetchCartItems(user.uid); // Obtener el carrito si hay un usuario autenticado
+      }
+    }, []); // Solo se ejecuta una vez cuando el componente se monta
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const toggleCartModal = () => setCartModalVisible(!cartModalVisible);
 
@@ -52,17 +72,21 @@ export default function Nave({ navigation }) {
           </View>
 
           <ScrollView style={styles.cartItemsList}>
-            {cartItems.map((item) => (
-              <View key={item.id} style={styles.cartItem}>
-                <View style={styles.cartItemInfo}>
-                  <Text style={styles.cartItemName}>{item.name}</Text>
-                  <Text style={styles.cartItemQuantity}>Cantidad: {item.quantity}</Text>
+            {cartItems.length > 0 ? (
+              cartItems.map((item) => (
+                <View key={item.id} style={styles.cartItem}>
+                  <View style={styles.cartItemInfo}>
+                    <Text style={styles.cartItemName}>{item.name}</Text>
+                    <Text style={styles.cartItemQuantity}>Cantidad: {item.quantity}</Text>
+                  </View>
+                  <Text style={styles.cartItemPrice}>
+                    ${(item.price * item.quantity).toLocaleString()}
+                  </Text>
                 </View>
-                <Text style={styles.cartItemPrice}>
-                  ${(item.price * item.quantity).toLocaleString()}
-                </Text>
-              </View>
-            ))}
+              ))
+            ) : (
+              <Text style={styles.emptyCartText}>El carrito está vacío.</Text>
+            )}
           </ScrollView>
 
           <View style={styles.cartFooter}>
